@@ -1,5 +1,5 @@
 #include<iostream>
-#include"window.h"
+#include"head/window.h"
 
 using namespace std;
 

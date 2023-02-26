@@ -18,12 +18,24 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\window.cpp">
+    <ClCompile Include="src\head\window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\head\std_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\head\shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\window.h">
+    <ClInclude Include="src\head\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\stb_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

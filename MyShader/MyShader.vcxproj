@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\head\shader.cpp" />
+    <ClCompile Include="src\head\std_image.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="src\head\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\window.h" />
+    <ClInclude Include="src\head\shader.h" />
+    <ClInclude Include="src\head\stb_image.h" />
+    <ClInclude Include="src\head\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
