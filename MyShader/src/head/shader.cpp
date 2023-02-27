@@ -1,10 +1,32 @@
 #include "shader.h"
 #include<vector>
 #include<iostream>
+#include<fstream>
+#include<sstream>
 #include<glm/gtc/type_ptr.hpp>
+
 std::string MyShader::PathToSrc(const std::string& path)
 {
-	return std::string();
+	std::string SrcCode;
+	std::ifstream fileReader;
+	fileReader.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	
+	try
+	{
+		//std::ofstream out("wk.txt");
+		fileReader.open(path.c_str());
+		std::cout<<"open sucess"<<std::endl;
+		std::stringstream codeStream;
+		codeStream << fileReader.rdbuf();
+		fileReader.close();
+		SrcCode = codeStream.str();
+
+	}
+	catch (std::ifstream::failure e)
+	{
+		std::cout << "fail to transfer the glsl src file" << std::endl;
+	}
+	return SrcCode;
 }
 
 MyShader::MyShader(const std::string& vertexSrc, const std::string& fragmentSrc)
@@ -13,6 +35,7 @@ MyShader::MyShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	std::string vertexSource = PathToSrc(vertexSrc);// Get source code for vertex shader.
 	std::string fragmentSource = PathToSrc(fragmentSrc);// Get source code for fragment shader.
 
+	//std::cout << vertexSource << std::endl;
 
 	// Read our shaders into the appropriate buffers
 	//std::string vertexSource = vertexSrc;// Get source code for vertex shader.
@@ -24,7 +47,7 @@ MyShader::MyShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	// Send the vertex shader source code to GL
 	// Note that std::string's .c_str is NULL character terminated.
 	const GLchar* source = (const GLchar*)vertexSource.c_str();
-	glShaderSource(vertexShader, 1, &source, 0);
+	glShaderSource(vertexShader, 1, &source, nullptr);
 
 	// Compile the vertex shader
 	glCompileShader(vertexShader);
@@ -117,6 +140,7 @@ MyShader::MyShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 		// Use the infoLog as you see fit.
 		std::cout << "shader link failed!"<<std::endl;
 		std::cout << infoLog.data()<<std::endl;
+		std::cout << "end info" << std::endl;
 		// In this simple program, we'll just leave
 		return;
 	}

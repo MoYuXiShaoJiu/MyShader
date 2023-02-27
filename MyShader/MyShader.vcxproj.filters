@@ -39,4 +39,8 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaderLib\vertex.glsl" />
+    <None Include="src\shaderLib\fragment.glsl" />
+  </ItemGroup>
 </Project>
