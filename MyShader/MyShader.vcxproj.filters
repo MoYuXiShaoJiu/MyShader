@@ -36,6 +36,9 @@
     <ClCompile Include="src\head\Tool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\head\light.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\head\window.h">
@@ -56,13 +59,24 @@
     <ClInclude Include="src\head\Tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\head\CallBack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\light.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaderLib\vertex.glsl" />
     <None Include="src\shaderLib\fragment.glsl" />
+    <None Include="src\shaderLib\lightVertex.glsl" />
+    <None Include="src\shaderLib\lightFrag.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\container.jpg">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

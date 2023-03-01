@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\head\camera.cpp" />
+    <ClCompile Include="src\head\light.cpp" />
     <ClCompile Include="src\head\shader.cpp" />
     <ClCompile Include="src\head\std_image.cpp" />
     <ClCompile Include="src\head\Texture.cpp" />
@@ -136,7 +137,9 @@
     <ClCompile Include="src\head\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\head\CallBack.h" />
     <ClInclude Include="src\head\camera.h" />
+    <ClInclude Include="src\head\light.h" />
     <ClInclude Include="src\head\shader.h" />
     <ClInclude Include="src\head\stb_image.h" />
     <ClInclude Include="src\head\Texture.h" />
@@ -145,9 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaderLib\fragment.glsl" />
+    <None Include="src\shaderLib\lightFrag.glsl" />
+    <None Include="src\shaderLib\lightVertex.glsl" />
     <None Include="src\shaderLib\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="src\texture\container.jpg" />
     <Image Include="src\texture\test.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

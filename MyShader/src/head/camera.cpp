@@ -9,6 +9,7 @@
 
 
 MyCamera::MyCamera(const glm::vec3& position, const glm::vec3& destination, const glm::vec3& up)
+	:position(position)
 {
 	//要注意这里的方向实际上是从
 	//正z轴是从屏幕指向你的

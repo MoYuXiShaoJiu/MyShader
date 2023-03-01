@@ -21,3 +21,4 @@ void Tool::OutPutVec3(glm::vec3 vector, const std::string& info)
 	std::cout << glm::to_string(vector) << std::endl;
 
 }
+

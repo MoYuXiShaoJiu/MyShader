@@ -16,6 +16,7 @@ public:
 	inline glm::mat4 GetModelMatrix() const { return Model; }
 	inline glm::mat4 GetVirwMatrix() const { return View; }
 	inline glm::mat4 GetProjectionMatrix() const { return Projection; }
+	inline glm::vec3 GetPosition()const { return position; }
 	//update
 	void UpdateModel(const glm::mat4& newModel);
 	void UpdateView(const glm::mat4& newView);
@@ -27,7 +28,7 @@ public:
 
 private:
 	glm::mat4 MVP, Model, View, Projection;
-	glm::vec3 right, up;
+	glm::vec3 right, up,position;
 
 };
 
