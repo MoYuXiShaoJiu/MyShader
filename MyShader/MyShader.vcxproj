@@ -127,16 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\head\camera.cpp" />
     <ClCompile Include="src\head\shader.cpp" />
     <ClCompile Include="src\head\std_image.cpp" />
     <ClCompile Include="src\head\Texture.cpp" />
+    <ClCompile Include="src\head\Tool.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\head\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\head\camera.h" />
     <ClInclude Include="src\head\shader.h" />
     <ClInclude Include="src\head\stb_image.h" />
     <ClInclude Include="src\head\Texture.h" />
+    <ClInclude Include="src\head\Tool.h" />
     <ClInclude Include="src\head\window.h" />
   </ItemGroup>
   <ItemGroup>

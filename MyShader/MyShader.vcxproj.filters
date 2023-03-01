@@ -30,6 +30,12 @@
     <ClCompile Include="src\head\Texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\head\camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\head\Tool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\head\window.h">
@@ -42,6 +48,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\head\Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\Tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

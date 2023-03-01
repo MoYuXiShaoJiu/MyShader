@@ -34,8 +34,11 @@ Texture::Texture(const std::string& path)
 			m_InternalFormat = GL_RGB8;
 			m_DataFormat = GL_RGB;
 		}
-		std::cout<< "format not supported"<<std::endl;
-
+		else
+		{
+			std::cout << "format not supported" << std::endl;
+		}
+		
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RenderID);
 		glTextureStorage2D(m_RenderID, 1, m_InternalFormat, m_width, m_height);
 
