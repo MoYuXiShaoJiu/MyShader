@@ -27,6 +27,9 @@
     <ClCompile Include="src\head\shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\head\Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\head\window.h">
@@ -38,9 +41,17 @@
     <ClInclude Include="src\head\shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\head\Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaderLib\vertex.glsl" />
     <None Include="src\shaderLib\fragment.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\texture\test.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

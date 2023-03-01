@@ -1,15 +1,17 @@
 #include<iostream>
 #include"head/window.h"
 #include"head/shader.h"
+#include"head/Texture.h"
 
 using namespace std;
 
 float vertex[] =
 {
-    0.5,0.5,0.0,
-    -0.5,0.5,0.0,
-    0.5,-0.5,0.0,
-    -0.5,-0.5,0.0
+    //vertex           texture
+    0.5,0.5,0.0,     1.0,1.0,
+    -0.5,0.5,0.0,    1.0,0.0,
+    0.5,-0.5,0.0,    0.0,0.0,
+    -0.5,-0.5,0.0,   0.0,1.0
 };
 
 
@@ -32,6 +34,11 @@ int main()
     MyShader mShader("src/shaderLib/vertex.glsl", "src/shaderLib/fragment.glsl");
     mShader.Bind();
 
+    //texture
+    Texture mTexture("src/texture/test.jpg");
+    mTexture.BindTexture();
+
+
     unsigned int vao, vbo,ibo;
     //°ó¶¨vao
     glGenVertexArrays(1, &vao);
@@ -41,8 +48,11 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), vertex, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 3, (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 5, (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, false, sizeof(float) * 5, (void*)(3 * sizeof(float)));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 
     glGenBuffers(1, &ibo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
@@ -61,6 +71,7 @@ int main()
         //bind and draw
         mShader.Bind();
         glBindVertexArray(vao);
+        mTexture.BindTexture();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         //over
 
