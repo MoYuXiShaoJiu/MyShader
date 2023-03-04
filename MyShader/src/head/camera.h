@@ -14,7 +14,7 @@ public:
 	//matrix
 	inline glm::mat4 GetMVP() const { return MVP; }
 	inline glm::mat4 GetModelMatrix() const { return Model; }
-	inline glm::mat4 GetVirwMatrix() const { return View; }
+	inline glm::mat4 GetViewMatrix() const { return View; }
 	inline glm::mat4 GetProjectionMatrix() const { return Projection; }
 	inline glm::vec3 GetPosition()const { return position; }
 	//update

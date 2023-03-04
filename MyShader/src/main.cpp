@@ -7,62 +7,60 @@
 #include"head/camera.h"
 #include"head/Tool.h"
 #include"head/CallBack.h"
+
 // 下面这行代码就需要改为:
 // glm::mat4 trans = glm::mat4(1.0f)
-
 using namespace std;
 
 
-
 float square[] = {
-     -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+      -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
 
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
 
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 };
 
 
-//unsigned int index[] = { 0,1,2,1,2,3};
-
-
-
+MyCamera mCamera(glm::vec3(0.0, 0.0, 5.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 int main()
 {
     const int screenWidth = 1600;
@@ -81,9 +79,18 @@ int main()
     ///////////////////////////////////////////////////////////////////////////////////
     MyShader mShader("src/shaderLib/vertex.glsl", "src/shaderLib/fragment.glsl");
     mShader.Bind();
+    
     //texture
     //Texture mTexture("src/texture/container.jpg");
     //mTexture.BindTexture();
+
+    MyTexture DiffuseTex("src/texture/container2.png");
+    DiffuseTex.BindTexture();
+
+    MyTexture SpecText("src/texture/container2_specular.png");
+    SpecText.BindTexture(1);
+    
+
     //vao vbo
     unsigned int vao, vbo,ibo;
     //绑定vao
@@ -94,9 +101,12 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 6, (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, false, sizeof(float) * 6, (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, false, sizeof(float) * 8, (void*)(6 * sizeof(float)));
+
     glBindBuffer(GL_ARRAY_BUFFER, 0);
  /*   glGenBuffers(1, &ibo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
@@ -116,7 +126,7 @@ int main()
     glBindVertexArray(0);
     glm::mat4 lightMove(1.0);
 
-    glm::vec3 change = glm::vec3(0.5, 1.0, 0);
+    glm::vec3 change = glm::vec3(1, 0.5, -0.5);
     lightMove = glm::translate(lightMove, change);
     lightMove = glm::scale(lightMove, glm::vec3(0.4f));
     //////////////////////////////////////////////////
@@ -126,11 +136,7 @@ int main()
     glm::vec3 lightPos =change;
     /////////////////////////////////////////////////////////
 
-
-    //设置相机
-    MyCamera mCamera(glm::vec3(0.0, 0.0, 5.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    //Tool::OutPutMat4(mCamera.GetMVP(),"mvp");
-    lightMove = mCamera.GetProjectionMatrix() * mCamera.GetVirwMatrix() * lightMove;
+    glm::mat4 lightMoveM = mCamera.GetProjectionMatrix() * mCamera.GetViewMatrix() * lightMove;
    
     while (!mWindow.WindowShouldClose())
     {
@@ -144,17 +150,25 @@ int main()
         mShader.UpLoadUniformFloat3("lightPos", lightPos);
         mShader.UpLoadUniformMat4("model", mCamera.GetModelMatrix());
         mShader.UpLoadUniformFloat3("viewPos", mCamera.GetPosition());
+        mShader.UpLoadUniformInt("ourText", 0);
+        mShader.UpLoadUniformInt("specText", 1);
         glBindVertexArray(vao);
         //纹理
         //mTexture.BindTexture();
+        glActiveTexture(GL_TEXTURE0);
+        DiffuseTex.BindTexture();
+        glActiveTexture(GL_TEXTURE1);
+        SpecText.BindTexture(1);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         
         //////////////////////////////////////////////////////
         //light
         lightShader.Bind();
-        lightShader.UpLoadUniformMat4("lightMVP", lightMove);
+        lightShader.UpLoadUniformMat4("lightMVP", lightMoveM);
+        lightMoveM = mCamera.GetProjectionMatrix() * mCamera.GetViewMatrix() * lightMove;
         glDrawArrays(GL_TRIANGLES, 0, 36);
         //over
+        ////////////////////////////////////////////////////////////////////////
 
         glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
         glfwPollEvents();//检查触发事件
@@ -164,4 +178,50 @@ int main()
 
 }
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_W && action == GLFW_PRESS)
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(0.0,0.0,0.5));
+        mCamera.UpdateView(newM);
+    }
+    else if (key == GLFW_KEY_S && action == GLFW_PRESS)
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(0.0, 0.0, -0.5));
+        mCamera.UpdateView(newM);
+    }
+    else if (key == GLFW_KEY_A && action == GLFW_PRESS)
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(0.5, 0.0, 0.0));
+        mCamera.UpdateView(newM);
+    }
+    else if (key == GLFW_KEY_D && action == GLFW_PRESS)
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(-0.5, 0.0, 0.0));
+        mCamera.UpdateView(newM);
+    }
+    else if (key == GLFW_KEY_Q && action == GLFW_PRESS)//向上
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(0.0, -0.5, 0.0));
+        mCamera.UpdateView(newM);
+    }
+    else if (key == GLFW_KEY_E && action == GLFW_PRESS)//向下
+    {
+        glm::mat4 newM = glm::translate(mCamera.GetViewMatrix(), glm::vec3(0.0, 0.5, 0.0));
+        mCamera.UpdateView(newM);
+    }
+    
+
+
+
+}
+
+
+
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+
+
+
+}
 

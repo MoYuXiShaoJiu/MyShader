@@ -39,6 +39,12 @@
     <ClCompile Include="src\head\light.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\head\Mesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\head\Model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\head\window.h">
@@ -65,6 +71,12 @@
     <ClInclude Include="src\head\light.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\head\Mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\head\Model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaderLib\vertex.glsl" />
@@ -77,6 +89,12 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="src\texture\container.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\container2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\container2_specular.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

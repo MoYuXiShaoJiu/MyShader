@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="src\head\camera.cpp" />
     <ClCompile Include="src\head\light.cpp" />
+    <ClCompile Include="src\head\Mesh.cpp" />
+    <ClCompile Include="src\head\Model.cpp" />
     <ClCompile Include="src\head\shader.cpp" />
     <ClCompile Include="src\head\std_image.cpp" />
     <ClCompile Include="src\head\Texture.cpp" />
@@ -140,6 +142,8 @@
     <ClInclude Include="src\head\CallBack.h" />
     <ClInclude Include="src\head\camera.h" />
     <ClInclude Include="src\head\light.h" />
+    <ClInclude Include="src\head\Mesh.h" />
+    <ClInclude Include="src\head\Model.h" />
     <ClInclude Include="src\head\shader.h" />
     <ClInclude Include="src\head\stb_image.h" />
     <ClInclude Include="src\head\Texture.h" />
@@ -154,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\container.jpg" />
+    <Image Include="src\texture\container2.png" />
+    <Image Include="src\texture\container2_specular.png" />
     <Image Include="src\texture\test.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

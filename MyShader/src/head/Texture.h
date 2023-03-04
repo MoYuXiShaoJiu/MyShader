@@ -2,11 +2,11 @@
 #include<string>
 #include"stb_image.h"
 #include<glad/glad.h>
-class Texture
+class MyTexture
 {
 public:
-	Texture(const std::string& path);
-	~Texture();
+	MyTexture(const std::string& path);
+	~MyTexture();
 	void BindTexture(unsigned int num = 0) const;
 	void UnBindTexture(unsigned int num = 0)const;
 

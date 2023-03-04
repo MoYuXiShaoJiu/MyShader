@@ -1,6 +1,6 @@
 ﻿#include"Texture.h"
 #include<iostream>
-Texture::Texture(const std::string& path)
+MyTexture::MyTexture(const std::string& path)
 	:path(path)
 {
 	// Basic usage (see HDR discussion below for HDR usage):
@@ -61,27 +61,29 @@ Texture::Texture(const std::string& path)
 
 }
 
-Texture::~Texture()
+MyTexture::~MyTexture()
 {
 	glDeleteTextures(1, &this->m_RenderID);
 }
 
-void Texture::BindTexture(unsigned int num) const
+void MyTexture::BindTexture(unsigned int num) const
 {
+	
 	glBindTextureUnit(num, m_RenderID);
+
 }
 
-void Texture::UnBindTexture(unsigned int num) const
+void MyTexture::UnBindTexture(unsigned int num) const
 {
 	glBindTextureUnit(0, m_RenderID);
 }
 
-int Texture::GetTextureWidth() const
+int MyTexture::GetTextureWidth() const
 {
 	return m_width;
 }
 
-int Texture::GetTextureHeight() const
+int MyTexture::GetTextureHeight() const
 {
 	return m_height;
 }
