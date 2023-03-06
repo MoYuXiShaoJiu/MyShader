@@ -37,14 +37,16 @@ void Mesh::Draw( MyShader& shader)
             std::cout << "Error type of tex" << std::endl;
         }
         //我们需要在shader中设置好material+name+bumber的struct
-        shader.UpLoadUniformInt("material." + name + number,i);
+        shader.UpLoadUniformInt(name + number,i);
+        std::cout << name + number << std::endl;
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
-    glActiveTexture(GL_TEXTURE0);
     //绘制网格
     glBindVertexArray(vao);
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(0);
+
 }
 
 void Mesh::setupMesh()

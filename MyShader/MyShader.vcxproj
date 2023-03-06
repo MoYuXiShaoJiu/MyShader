@@ -154,6 +154,8 @@
     <None Include="src\shaderLib\fragment.glsl" />
     <None Include="src\shaderLib\lightFrag.glsl" />
     <None Include="src\shaderLib\lightVertex.glsl" />
+    <None Include="src\shaderLib\modelFrag.glsl" />
+    <None Include="src\shaderLib\modelVertex.glsl" />
     <None Include="src\shaderLib\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>

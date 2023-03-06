@@ -83,6 +83,8 @@
     <None Include="src\shaderLib\fragment.glsl" />
     <None Include="src\shaderLib\lightVertex.glsl" />
     <None Include="src\shaderLib\lightFrag.glsl" />
+    <None Include="src\shaderLib\modelVertex.glsl" />
+    <None Include="src\shaderLib\modelFrag.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">

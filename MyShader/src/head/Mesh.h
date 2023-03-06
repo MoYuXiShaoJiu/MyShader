@@ -4,6 +4,9 @@
 #include<string>
 #include<vector>
 #include"shader.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 struct Vertex
 {
 	//一个顶点至少包含位置、法向量、纹理坐标
@@ -24,6 +27,7 @@ struct Texture
 	//一个网格还应该包含用于索引绘制的索引以及纹理形式的材质数据（漫反射 / 镜面光贴图）
 	unsigned int id;
 	TexType type;
+	aiString path;
 	//纹理的id以及它的类型
 };
 

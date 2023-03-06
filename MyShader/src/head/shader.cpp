@@ -172,7 +172,7 @@ void MyShader::UpLoadUniformMat4(const std::string& name, const glm::mat4& m_mat
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout<<"up load mat4 fail!"<<std::endl;
+		std::cout<<"up load mat4 fail!"<<name<<std::endl;
 	}
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(m_matrix));
 }
@@ -183,7 +183,7 @@ void MyShader::UpLoadUniformMat3(const std::string& name, const glm::mat3& m_mat
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load mat3 fail!" << std::endl;
+		std::cout << "up load mat3 fail!" <<name<< std::endl;
 	}
 	glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(m_matrix));
 }
@@ -193,7 +193,7 @@ void MyShader::UpLoadUniformInt(const std::string& name, const int num)
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load int fail!" << std::endl;
+		std::cout << "up load int fail!" <<name<< std::endl;
 	}
 	glUniform1i(location, num);
 }
@@ -203,7 +203,7 @@ void MyShader::UPLoadUniformFloat2(const std::string& name, const glm::vec2& m_v
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load float2 fail!"<<std::endl;
+		std::cout << "up load float2 fail!"<<name<<std::endl;
 	}
 	glUniform2f(location, m_vec2.x, m_vec2.y);
 }
@@ -213,7 +213,7 @@ void MyShader::UpLoadUniformFloat3(const std::string& name, const glm::vec3& m_v
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load float3 fail!" << std::endl;
+		std::cout << "up load float3 fail!" <<name<< std::endl;
 	}
 	glUniform3f(location, m_vec3.x, m_vec3.y, m_vec3.z);
 }
@@ -223,7 +223,7 @@ void MyShader::UpLoadUniformFloat4(const std::string& name, const glm::vec4& m_v
 	int location = glGetUniformLocation(m_RendererId, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load float4 fail!" << std::endl;
+		std::cout << "up load float4 fail!" <<name<< std::endl;
 	}
 	glUniform4f(location, m_vec3.x, m_vec3.y, m_vec3.z, m_vec3.w);
 }
