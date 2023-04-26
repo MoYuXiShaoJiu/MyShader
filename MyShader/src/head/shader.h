@@ -6,6 +6,7 @@ class MyShader
 {
 public:
 	MyShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+	MyShader(const std::string& vertexSrc, const std::string& GeoSrc, const std::string& fragmentSrc);
 	~MyShader();
 	void Bind() const;
 	void UnBind()const;

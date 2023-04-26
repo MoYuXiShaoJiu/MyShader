@@ -87,3 +87,59 @@ int MyTexture::GetTextureHeight() const
 {
 	return m_height;
 }
+
+CubeTexture::CubeTexture(const std::vector<std::string>& path)
+{
+	//生成立方体纹理
+	
+	glGenTextures(1, &m_TextureID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, m_TextureID);
+	
+	//绑定
+	int width, height, nrChannels;
+	
+	unsigned char* data;
+	for (unsigned int i = 0; i < path.size(); i++)
+	{
+		stbi_set_flip_vertically_on_load(0);
+		data = stbi_load(path[i].c_str(), &width, &height,&nrChannels, 0);
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			stbi_image_free(data);
+		}
+		else
+		{
+			std::cout << "cube map Texture read fail in " <<
+				i << std::endl;
+			stbi_image_free(data);
+		}
+
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+}
+
+CubeTexture::~CubeTexture()
+{
+	glDeleteTextures(1,&m_TextureID);
+}
+
+void CubeTexture::BindTexture(unsigned int num) const
+{
+	//glBindTexture(GL_TEXTURE_CUBE_MAP, m_TextureID);
+	glBindTextureUnit(num, m_TextureID);
+}
+
+void CubeTexture::UnBindTexture(unsigned int num) const
+{
+	glBindTexture(0, m_TextureID);
+}
+
+int CubeTexture::GetTextureID()
+{
+	return m_TextureID;
+}

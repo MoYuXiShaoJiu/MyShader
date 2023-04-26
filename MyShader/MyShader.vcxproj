@@ -151,17 +151,34 @@
     <ClInclude Include="src\head\window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\shaderLib\cubeTexF.glsl" />
+    <None Include="src\shaderLib\cubeTexV.glsl" />
+    <None Include="src\shaderLib\depthTestF.glsl" />
+    <None Include="src\shaderLib\depthTestV.glsl" />
     <None Include="src\shaderLib\fragment.glsl" />
+    <None Include="src\shaderLib\GeoF.glsl" />
+    <None Include="src\shaderLib\GeoG.glsl" />
+    <None Include="src\shaderLib\GeoV.glsl" />
     <None Include="src\shaderLib\lightFrag.glsl" />
     <None Include="src\shaderLib\lightVertex.glsl" />
     <None Include="src\shaderLib\modelFrag.glsl" />
     <None Include="src\shaderLib\modelVertex.glsl" />
+    <None Include="src\shaderLib\normalDisplayF.glsl" />
+    <None Include="src\shaderLib\normalDisplayG.glsl" />
+    <None Include="src\shaderLib\normalDisplayV.glsl" />
     <None Include="src\shaderLib\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\container.jpg" />
     <Image Include="src\texture\container2.png" />
     <Image Include="src\texture\container2_specular.png" />
+    <Image Include="src\texture\metal.png" />
+    <Image Include="src\texture\skybox\skybox\back.jpg" />
+    <Image Include="src\texture\skybox\skybox\bottom.jpg" />
+    <Image Include="src\texture\skybox\skybox\front.jpg" />
+    <Image Include="src\texture\skybox\skybox\left.jpg" />
+    <Image Include="src\texture\skybox\skybox\right.jpg" />
+    <Image Include="src\texture\skybox\skybox\top.jpg" />
     <Image Include="src\texture\test.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

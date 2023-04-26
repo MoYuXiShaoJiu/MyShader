@@ -6,7 +6,7 @@
 #include<glm/gtc/matrix_transform.hpp>
 #include"head/camera.h"
 #include"head/Tool.h"
-#include"head/Model.h"
+//#include"head/Model.h"
 
 
 // 下面这行代码就需要改为:
@@ -57,143 +57,141 @@ float square[] = {
     -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
     -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 };
+float cubeVertices[] = {
+    // positions          // texture Coords
+     -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+};
+float planeVertices[] = {
+    // positions            // normals         // texcoords
+        10.0f, -0.5f,  10.0f,  0.0f, 1.0f, 0.0f,  10.0f,  0.0f,
+       -10.0f, -0.5f,  10.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+       -10.0f, -0.5f, -10.0f,  0.0f, 1.0f, 0.0f,   0.0f, 10.0f,
+
+        10.0f, -0.5f,  10.0f,  0.0f, 1.0f, 0.0f,  10.0f,  0.0f,
+       -10.0f, -0.5f, -10.0f,  0.0f, 1.0f, 0.0f,   0.0f, 10.0f,
+        10.0f, -0.5f, -10.0f,  0.0f, 1.0f, 0.0f,  10.0f, 10.0f
+};
+float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+    // positions   // texCoords
+    -1.0f,  1.0f,  0.0f, 1.0f,
+    -1.0f, -1.0f,  0.0f, 0.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+
+    -1.0f,  1.0f,  0.0f, 1.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+     1.0f,  1.0f,  1.0f, 1.0f
+};
+float skyboxVertices[] = {
+    // positions          
+    -1.0f,  1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+    -1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f
+};
+
+std::vector<std::string> CubeTexpath
+{
+    "src/texture/skybox/skybox/right.jpg",
+    "src/texture/skybox/skybox/left.jpg",
+    "src/texture/skybox/skybox/top.jpg",
+    "src/texture/skybox/skybox/bottom.jpg",
+    "src/texture/skybox/skybox/front.jpg",
+    "src/texture/skybox/skybox/back.jpg"
+};
+float points[] = {
+      -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // 左上
+     0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // 右上
+     0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // 右下
+    -0.5f, -0.5f, 1.0f, 1.0f, 0.0f  // 左下
+};
 
 MyCamera mCamera(glm::vec3(0.0, 0.0, 5.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
-//int main()
-//{
-//    const int screenWidth = 1600;
-//    const int screenHeight = 900;
-//    MyWindow mWindow(screenWidth, screenHeight, "shader");
-//    mWindow.MakeWindowCurrent();
-//    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-//    {
-//        std::cout << "fail to initialize glad\n" << std::endl;
-//        return -1;
-//    }
-//    glEnable(GL_DEPTH_TEST);
-//    glViewport(0, 0, screenWidth, screenHeight);//视口
-//    glfwSetKeyCallback(mWindow.GetWindowPtr(),key_callback);
-//    glfwSetCursorPosCallback(mWindow.GetWindowPtr(), cursor_position_callback);
-//    ///////////////////////////////////////////////////////////////////////////////////
-//    MyShader mShader("src/shaderLib/vertex.glsl", "src/shaderLib/fragment.glsl");
-//    mShader.Bind();
-//    
-//    ////texture
-//    ////Texture mTexture("src/texture/container.jpg");
-//    ////mTexture.BindTexture();
-//    //MyTexture DiffuseTex("src/texture/container2.png");
-//    //DiffuseTex.BindTexture();
-//    //MyTexture SpecText("src/texture/container2_specular.png");
-//    //SpecText.BindTexture(1);
-//    
-//    //model
-//    MyModel mModel("src/model/nanosuit/nanosuit.obj");
-//    MyShader modelShader("src/shaderLib/modelVertex.glsl", "src/shaderLib/modelFrag.glsl");
-//
-//
-//    //vao vbo
-//    //unsigned int vao, vbo,ibo;
-//    ////绑定vao
-//    //glGenVertexArrays(1, &vao);
-//    //glBindVertexArray(vao);
-//    ////vbo
-//    //glGenBuffers(1, &vbo);
-//    //glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//    //glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
-//    //glEnableVertexAttribArray(0);
-//    //glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)0);
-//    //glEnableVertexAttribArray(1);
-//    //glVertexAttribPointer(1, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)(3 * sizeof(float)));
-//    //glEnableVertexAttribArray(2);
-//    //glVertexAttribPointer(2, 2, GL_FLOAT, false, sizeof(float) * 8, (void*)(6 * sizeof(float)));
-//
-//    //glBindBuffer(GL_ARRAY_BUFFER, 0);
-// /*   glGenBuffers(1, &ibo);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(index), index, GL_STATIC_DRAW);*/
-//    glBindVertexArray(0);
-//    //完成并且解绑
-//    
-//    //light cube
-//  /*  MyShader lightShader("src/shaderLib/lightVertex.glsl", "src/shaderLib/lightFrag.glsl");
-//    unsigned int lightVao;
-//    glGenVertexArrays(1, &lightVao);
-//    glBindVertexArray(lightVao);
-//    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 6, (void*)0);
-//    glBindBuffer(GL_ARRAY_BUFFER, 0);
-//    glBindVertexArray(0);*/
-//    glm::mat4 lightMove(1.0);
-//
-//    glm::vec3 change = glm::vec3(0.5, 0.5, -0.5);
-//    lightMove = glm::translate(lightMove, change);
-//    lightMove = glm::scale(lightMove, glm::vec3(0.4f));
-// //   //////////////////////////////////////////////////
-//
-// //   //////////////////////////light//////////////////////////
-//    glm::vec3 light(1.0);
-//    glm::vec3 lightPos =change;
-// //   /////////////////////////////////////////////////////////
-//
-//    glm::mat4 lightMoveM = mCamera.GetProjectionMatrix() * mCamera.GetViewMatrix() * lightMove;
-// //  
-//    while (!mWindow.WindowShouldClose())
-//    {
-//        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//清除缓存
-//        ///////////////////////////////////////////////////////////////
-//        //bind 
-//      /*  mShader.Bind();
-//        mShader.UpLoadUniformMat4("MVP",mCamera.GetMVP());
-//        mShader.UpLoadUniformFloat3("light", light);
-//        mShader.UpLoadUniformFloat3("lightPos", lightPos);
-//        mShader.UpLoadUniformMat4("model", mCamera.GetModelMatrix());
-//        mShader.UpLoadUniformFloat3("viewPos", mCamera.GetPosition());
-//        mShader.UpLoadUniformInt("ourText", 0);
-//        mShader.UpLoadUniformInt("specText", 1);
-//        glBindVertexArray(vao);*/
-//        //纹理
-//        //mTexture.BindTexture();
-//     /*   glActiveTexture(GL_TEXTURE0);
-//        DiffuseTex.BindTexture();
-//        glActiveTexture(GL_TEXTURE1);
-//        SpecText.BindTexture(1);*/
-//        //glDrawArrays(GL_TRIANGLES, 0, 36);
-//        
-//        //////////////////////////////////////////////////////
-//        //light
-//        /*
-//        lightShader.Bind();
-//        lightShader.UpLoadUniformMat4("lightMVP", lightMoveM);
-//        lightMoveM = mCamera.GetProjectionMatrix() * mCamera.GetViewMatrix() * lightMove;
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
-//        lightShader.UnBind();*/
-//        //over
-//        ////////////////////////////////////////////////////////////////////////
-//        
-//        modelShader.Bind();
-//        glm::mat4 newMVP = mCamera.GetProjectionMatrix() * glm::scale(mCamera.GetViewMatrix(), glm::vec3(0.2, 0.2, 0.2)) * mCamera.GetModelMatrix();
-//        modelShader.UpLoadUniformMat4("MVP", newMVP);
-//        modelShader.UpLoadUniformFloat3("light", light);
-//        modelShader.UpLoadUniformFloat3("lightPos", lightPos);
-//        modelShader.UpLoadUniformMat4("model", mCamera.GetModelMatrix());
-//        modelShader.UpLoadUniformFloat3("viewPos", mCamera.GetPosition());
-//        mModel.DrawModel(modelShader);
-//
-//        glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
-//        glfwPollEvents();//检查触发事件
-//    }
-//    return 0;
-//
-//
-//}
+
+
+
 
 int main()
 {
+    //init
     const int screenWidth = 1600;
     const int screenHeight = 900;
     MyWindow mWindow(screenWidth, screenHeight, "shader");
@@ -203,39 +201,163 @@ int main()
         std::cout << "fail to initialize glad\n" << std::endl;
         return -1;
     }
-    glEnable(GL_DEPTH_TEST);
+    
+    //glDepthFunc(GL_LESS);
     glViewport(0, 0, screenWidth, screenHeight);//视口
     glfwSetKeyCallback(mWindow.GetWindowPtr(),key_callback);
     glfwSetCursorPosCallback(mWindow.GetWindowPtr(), cursor_position_callback);
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    //shader
+    //MyShader DepthTestShader("src/shaderLib/depthTestV.glsl", "src/shaderLib/depthTestF.glsl");
+    MyShader DepthTestShader("src/shaderLib/depthTestV.glsl", "src/shaderLib/depthTestF.glsl");
+    MyShader skyBox("src/shaderLib/cubeTexV.glsl", "src/shaderLib/cubeTexF.glsl");
+    MyShader normalDisplay("src/shaderLib/normalDisplayV.glsl", "src/shaderLib/normalDisplayG.glsl",
+        "src/shaderLib/normalDisplayF.glsl");
+    //Texture
+    MyTexture container("src/texture/container.jpg");
+    MyTexture metal("src/texture/metal.png");
+    CubeTexture skyBoxTex(CubeTexpath);
+    // cube VAO
+    unsigned int cubeVAO, cubeVBO;
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    // plane VAO
+    unsigned int planeVAO, planeVBO;
+    glGenVertexArrays(1, &planeVAO);
+    glGenBuffers(1, &planeVBO);
+    glBindVertexArray(planeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), &planeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    // screen quad VAO
+    unsigned int quadVAO, quadVBO;
+    glGenVertexArrays(1, &quadVAO);
+    glGenBuffers(1, &quadVBO);
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-    MyShader modelShader("src/shaderLib/modelVertex.glsl", "src/shaderLib/modelFrag.glsl");
-    MyModel mModel("src/model/nanosuit/nanosuit.obj");
-    glm::vec3 light(1.0, 1.0, 1.0);
-    glm::vec3 lightPos(0.5, 0.5, 0.5);
+    //skybox
+    unsigned int skyBoxVAO, skyBoxVBO;
+    glGenVertexArrays(1, &skyBoxVAO);
+    glGenBuffers(1, &skyBoxVBO);
+    glBindVertexArray(skyBoxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skyBoxVAO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * (sizeof(float)), (void*)0);
 
 
+    
+    DepthTestShader.Bind();
+    DepthTestShader.UpLoadUniformInt("skybox", 0);
+    skyBox.Bind();
+    skyBox.UpLoadUniformInt("cubemap", 0);
+    glEnable(GL_DEPTH_TEST);
     while (!mWindow.WindowShouldClose())
     {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//清除缓存
 
-        modelShader.Bind();
-        glm::mat4 newMVP = mCamera.GetProjectionMatrix() * glm::scale(mCamera.GetViewMatrix(), glm::vec3(0.2, 0.2, 0.2)) * mCamera.GetModelMatrix();
-        modelShader.UpLoadUniformMat4("MVP", newMVP);
-        modelShader.UpLoadUniformFloat3("light", light);
-        modelShader.UpLoadUniformFloat3("lightPos", lightPos);
-        modelShader.UpLoadUniformMat4("model", mCamera.GetModelMatrix());
-        modelShader.UpLoadUniformFloat3("viewPos", mCamera.GetPosition());
-        mModel.DrawModel(modelShader);
+        DepthTestShader.Bind();
+        glm::mat4 model = glm::mat4(1.0);
+        glm::mat4 view = mCamera.GetViewMatrix();
+        glm::mat4 projection = mCamera.GetProjectionMatrix();
+        DepthTestShader.UpLoadUniformMat4("model", model);
+        DepthTestShader.UpLoadUniformMat4("view", view);
+        DepthTestShader.UpLoadUniformMat4("projection", projection);
+        // floor
+        //glBindVertexArray(planeVAO);
+        //metal.BindTexture();
+        //DepthTestShader.UpLoadUniformMat4("model", glm::mat4(1.0f));
+       //glDrawArrays(GL_TRIANGLES, 0, 6);
+        //glBindVertexArray(0);
+         
+        //cube
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        //container.BindTexture();
+        skyBoxTex.BindTexture();
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        DepthTestShader.UpLoadUniformMat4("model", model);
+        DepthTestShader.UpLoadUniformFloat3("camPos", mCamera.GetPosition());
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        DepthTestShader.UpLoadUniformMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        normalDisplay.Bind();
+        normalDisplay.UpLoadUniformMat4("model", model);
+        normalDisplay.UpLoadUniformMat4("view", view);
+        normalDisplay.UpLoadUniformMat4("projection", projection);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //skybox
+
+        //glDepthMask(GL_FALSE);
+        //glDepthFunc(GL_LEQUAL);
+        //skyBox.Bind();
+        //view = glm::mat4(glm::mat3(mCamera.GetViewMatrix()));
+        //skyBox.UpLoadUniformMat4("view", view);
+        //skyBox.UpLoadUniformMat4("projection", mCamera.GetProjectionMatrix());
+        //glBindVertexArray(skyBoxVAO);
+        //glActiveTexture(GL_TEXTURE0);
+        //skyBoxTex.BindTexture();
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        //glBindVertexArray(0);
+        ////glDepthMask(GL_TRUE);
+        //glDepthFunc(GL_LESS);
 
         glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
         glfwPollEvents();//检查触发事件
 
     }
+    
+    //Geo test
+    //unsigned int GeoVAO, GeoVBO;
+    //glGenVertexArrays(1, &GeoVAO);
+    //glBindVertexArray(GeoVAO);
+    //glGenBuffers(1, &GeoVBO);
+    //glBindBuffer(GL_ARRAY_BUFFER, GeoVBO);
+    //glBufferData(GL_ARRAY_BUFFER, sizeof(points), &points, GL_STATIC_DRAW);
+    //glEnableVertexAttribArray(0);
+    //glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    //glEnableVertexAttribArray(1);
+    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+
+    //MyShader GeoShader("src/shaderLib/GeoV.glsl", "src/shaderLib/GeoG.glsl", "src/shaderLib/GeoF.glsl");
+    ////MyShader GeoShader("src/shaderLib/GeoV.glsl", "src/shaderLib/GeoF.glsl");
+
+    //while (!glfwWindowShouldClose(mWindow.GetWindowPtr()))
+    //{
+    //    //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    //    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//清除缓存
+    //    GeoShader.Bind();
+    //    glBindVertexArray(GeoVAO);
+    //    glDrawArrays(GL_POINTS, 0, 4);
+    //    glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
+    //    glfwPollEvents();//检查触发事件
+    //}
 
 
+    return 0;
 
 }
+
+
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -274,8 +396,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 
 }
-
-
 
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {

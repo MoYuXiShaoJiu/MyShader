@@ -85,6 +85,16 @@
     <None Include="src\shaderLib\lightFrag.glsl" />
     <None Include="src\shaderLib\modelVertex.glsl" />
     <None Include="src\shaderLib\modelFrag.glsl" />
+    <None Include="src\shaderLib\depthTestV.glsl" />
+    <None Include="src\shaderLib\depthTestF.glsl" />
+    <None Include="src\shaderLib\cubeTexV.glsl" />
+    <None Include="src\shaderLib\cubeTexF.glsl" />
+    <None Include="src\shaderLib\GeoV.glsl" />
+    <None Include="src\shaderLib\GeoF.glsl" />
+    <None Include="src\shaderLib\GeoG.glsl" />
+    <None Include="src\shaderLib\normalDisplayV.glsl" />
+    <None Include="src\shaderLib\normalDisplayG.glsl" />
+    <None Include="src\shaderLib\normalDisplayF.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">
@@ -97,6 +107,27 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="src\texture\container2_specular.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\metal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\back.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\bottom.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\front.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\left.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\right.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\skybox\skybox\top.jpg">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
