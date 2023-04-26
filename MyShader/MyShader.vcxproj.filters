@@ -95,6 +95,8 @@
     <None Include="src\shaderLib\normalDisplayV.glsl" />
     <None Include="src\shaderLib\normalDisplayG.glsl" />
     <None Include="src\shaderLib\normalDisplayF.glsl" />
+    <None Include="src\shaderLib\blinnPhongV.glsl" />
+    <None Include="src\shaderLib\blinnPhongF.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">
@@ -128,6 +130,9 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="src\texture\skybox\skybox\top.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="src\texture\wood.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

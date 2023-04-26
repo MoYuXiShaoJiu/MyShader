@@ -151,6 +151,8 @@
     <ClInclude Include="src\head\window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\shaderLib\blinnPhongF.glsl" />
+    <None Include="src\shaderLib\blinnPhongV.glsl" />
     <None Include="src\shaderLib\cubeTexF.glsl" />
     <None Include="src\shaderLib\cubeTexV.glsl" />
     <None Include="src\shaderLib\depthTestF.glsl" />
@@ -180,6 +182,7 @@
     <Image Include="src\texture\skybox\skybox\right.jpg" />
     <Image Include="src\texture\skybox\skybox\top.jpg" />
     <Image Include="src\texture\test.jpg" />
+    <Image Include="src\texture\wood.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

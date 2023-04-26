@@ -186,9 +186,6 @@ MyCamera mCamera(glm::vec3(0.0, 0.0, 5.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
-
-
-
 int main()
 {
     //init
@@ -207,150 +204,54 @@ int main()
     glfwSetKeyCallback(mWindow.GetWindowPtr(),key_callback);
     glfwSetCursorPosCallback(mWindow.GetWindowPtr(), cursor_position_callback);
     /////////////////////////////////////////////////////////////////////////////////////////////
+
     //shader
-    //MyShader DepthTestShader("src/shaderLib/depthTestV.glsl", "src/shaderLib/depthTestF.glsl");
-    MyShader DepthTestShader("src/shaderLib/depthTestV.glsl", "src/shaderLib/depthTestF.glsl");
-    MyShader skyBox("src/shaderLib/cubeTexV.glsl", "src/shaderLib/cubeTexF.glsl");
-    MyShader normalDisplay("src/shaderLib/normalDisplayV.glsl", "src/shaderLib/normalDisplayG.glsl",
-        "src/shaderLib/normalDisplayF.glsl");
-    //Texture
-    MyTexture container("src/texture/container.jpg");
-    MyTexture metal("src/texture/metal.png");
-    CubeTexture skyBoxTex(CubeTexpath);
-    // cube VAO
-    unsigned int cubeVAO, cubeVBO;
-    glGenVertexArrays(1, &cubeVAO);
-    glGenBuffers(1, &cubeVBO);
-    glBindVertexArray(cubeVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    // plane VAO
+    MyShader planeShader("src/shaderLib/blinnPhongV.glsl", "src/shaderLib/blinnPhongF.glsl");
+    //vao vbo
     unsigned int planeVAO, planeVBO;
     glGenVertexArrays(1, &planeVAO);
-    glGenBuffers(1, &planeVBO);
     glBindVertexArray(planeVAO);
+    glGenBuffers(1, &planeVBO);
     glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), &planeVertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    // screen quad VAO
-    unsigned int quadVAO, quadVBO;
-    glGenVertexArrays(1, &quadVAO);
-    glGenBuffers(1, &quadVBO);
-    glBindVertexArray(quadVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * (sizeof(float)), (void*)(6 * sizeof(float)));
+    glBindVertexArray(0);
+    //texture
+    MyTexture plane("src/texture/wood.png");
+    glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
+    bool blinn = true;
 
-    //skybox
-    unsigned int skyBoxVAO, skyBoxVBO;
-    glGenVertexArrays(1, &skyBoxVAO);
-    glGenBuffers(1, &skyBoxVBO);
-    glBindVertexArray(skyBoxVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, skyBoxVAO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * (sizeof(float)), (void*)0);
-
-
-    
-    DepthTestShader.Bind();
-    DepthTestShader.UpLoadUniformInt("skybox", 0);
-    skyBox.Bind();
-    skyBox.UpLoadUniformInt("cubemap", 0);
-    glEnable(GL_DEPTH_TEST);
-    while (!mWindow.WindowShouldClose())
+    while(!mWindow.WindowShouldClose())
     {
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//清除缓存
 
-        DepthTestShader.Bind();
-        glm::mat4 model = glm::mat4(1.0);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        planeShader.Bind();
+        plane.BindTexture();
+        glBindVertexArray(planeVAO);
+        glm::mat4 model(1.0);
         glm::mat4 view = mCamera.GetViewMatrix();
         glm::mat4 projection = mCamera.GetProjectionMatrix();
-        DepthTestShader.UpLoadUniformMat4("model", model);
-        DepthTestShader.UpLoadUniformMat4("view", view);
-        DepthTestShader.UpLoadUniformMat4("projection", projection);
-        // floor
-        //glBindVertexArray(planeVAO);
-        //metal.BindTexture();
-        //DepthTestShader.UpLoadUniformMat4("model", glm::mat4(1.0f));
-       //glDrawArrays(GL_TRIANGLES, 0, 6);
-        //glBindVertexArray(0);
-         
-        //cube
-        glBindVertexArray(cubeVAO);
+        planeShader.UpLoadUniformMat4("model", model);
+        planeShader.UpLoadUniformMat4("view", view);
+        planeShader.UpLoadUniformMat4("projection", projection);
+        planeShader.UpLoadUniformFloat3("lightPos", lightPos);
+        planeShader.UpLoadUniformFloat3("viewPos", mCamera.GetPosition());
+
+        planeShader.UpLoadUniformInt("tex", 0);
         glActiveTexture(GL_TEXTURE0);
-        //container.BindTexture();
-        skyBoxTex.BindTexture();
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        DepthTestShader.UpLoadUniformMat4("model", model);
-        DepthTestShader.UpLoadUniformFloat3("camPos", mCamera.GetPosition());
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-        DepthTestShader.UpLoadUniformMat4("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        normalDisplay.Bind();
-        normalDisplay.UpLoadUniformMat4("model", model);
-        normalDisplay.UpLoadUniformMat4("view", view);
-        normalDisplay.UpLoadUniformMat4("projection", projection);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        //skybox
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        //glDepthMask(GL_FALSE);
-        //glDepthFunc(GL_LEQUAL);
-        //skyBox.Bind();
-        //view = glm::mat4(glm::mat3(mCamera.GetViewMatrix()));
-        //skyBox.UpLoadUniformMat4("view", view);
-        //skyBox.UpLoadUniformMat4("projection", mCamera.GetProjectionMatrix());
-        //glBindVertexArray(skyBoxVAO);
-        //glActiveTexture(GL_TEXTURE0);
-        //skyBoxTex.BindTexture();
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
-        //glBindVertexArray(0);
-        ////glDepthMask(GL_TRUE);
-        //glDepthFunc(GL_LESS);
-
-        glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
-        glfwPollEvents();//检查触发事件
-
+        glfwSwapBuffers(mWindow.GetWindowPtr());
+        glfwPollEvents();
     }
-    
-    //Geo test
-    //unsigned int GeoVAO, GeoVBO;
-    //glGenVertexArrays(1, &GeoVAO);
-    //glBindVertexArray(GeoVAO);
-    //glGenBuffers(1, &GeoVBO);
-    //glBindBuffer(GL_ARRAY_BUFFER, GeoVBO);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(points), &points, GL_STATIC_DRAW);
-    //glEnableVertexAttribArray(0);
-    //glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    //glEnableVertexAttribArray(1);
-    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
 
-    //MyShader GeoShader("src/shaderLib/GeoV.glsl", "src/shaderLib/GeoG.glsl", "src/shaderLib/GeoF.glsl");
-    ////MyShader GeoShader("src/shaderLib/GeoV.glsl", "src/shaderLib/GeoF.glsl");
-
-    //while (!glfwWindowShouldClose(mWindow.GetWindowPtr()))
-    //{
-    //    //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    //    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//清除缓存
-    //    GeoShader.Bind();
-    //    glBindVertexArray(GeoVAO);
-    //    glDrawArrays(GL_POINTS, 0, 4);
-    //    glfwSwapBuffers(mWindow.GetWindowPtr());//使用双缓冲，这里是交换前后缓冲
-    //    glfwPollEvents();//检查触发事件
-    //}
 
 
     return 0;
