@@ -97,6 +97,8 @@
     <None Include="src\shaderLib\normalDisplayF.glsl" />
     <None Include="src\shaderLib\blinnPhongV.glsl" />
     <None Include="src\shaderLib\blinnPhongF.glsl" />
+    <None Include="src\shaderLib\shadowMapV.glsl" />
+    <None Include="src\shaderLib\shadowMapF.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">

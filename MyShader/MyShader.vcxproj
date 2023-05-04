@@ -168,6 +168,8 @@
     <None Include="src\shaderLib\normalDisplayF.glsl" />
     <None Include="src\shaderLib\normalDisplayG.glsl" />
     <None Include="src\shaderLib\normalDisplayV.glsl" />
+    <None Include="src\shaderLib\shadowMapF.glsl" />
+    <None Include="src\shaderLib\shadowMapV.glsl" />
     <None Include="src\shaderLib\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
