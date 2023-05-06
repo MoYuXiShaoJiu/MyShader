@@ -99,6 +99,7 @@
     <None Include="src\shaderLib\blinnPhongF.glsl" />
     <None Include="src\shaderLib\shadowMapV.glsl" />
     <None Include="src\shaderLib\shadowMapF.glsl" />
+    <None Include="src\shaderLib\PCSSF.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\texture\test.jpg">
