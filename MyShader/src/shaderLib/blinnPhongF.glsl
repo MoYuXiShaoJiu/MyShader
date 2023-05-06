@@ -10,7 +10,6 @@ out vec4 FragColor;
 uniform vec3 lightPos;
 uniform vec3 viewPos;
 
-
 uniform sampler2D tex;
 uniform sampler2D shadow;
 
@@ -25,10 +24,23 @@ float ShadowCalculation(vec4 fragPosLightSpace)
     // 取得当前片段在光源视角下的深度
     float currentDepth = projCoords.z;
     // 检查当前片段是否在阴影中
-	float bias = 0.05;
-    float shadow = currentDepth-bias > closestDepth  ? 1.0 : 0.0;
-
-    return shadow;
+	float bias = 0.005;
+//    float shadow = currentDepth-bias > closestDepth  ? 1.0 : 0.0;
+    float shadowNum = 0.0;
+    vec2 texelSize = 1.0 / textureSize(shadow, 0);
+    for(int x = -1; x <= 1; ++x)
+    {
+        for(int y = -1; y <= 1; ++y)
+        {
+            float pcfDepth = texture(shadow, projCoords.xy + vec2(x, y) * texelSize).r; 
+            shadowNum += currentDepth - bias > pcfDepth  ? 1.0 : 0.0;        
+        }    
+    }
+    shadowNum /= 9.0;
+    // Keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
+    if(projCoords.z > 1.0)
+        shadowNum = 0.0;        
+    return shadowNum;
 }
 
 void main()
